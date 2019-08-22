@@ -1,0 +1,3 @@
+export const LOAD_IMAGES = 'app/LOAD_IMAGES';
+export const LOAD_IMAGES_SUCCESS = 'app/LOAD_IMAGES_SUCCESS';
+export const LOAD_IMAGES_ERROR = 'app/LOAD_IMAGES_ERROR';

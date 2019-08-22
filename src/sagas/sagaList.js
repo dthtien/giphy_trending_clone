@@ -1,0 +1,1 @@
+export { saga as appSaga } from '../containers/App/services';
