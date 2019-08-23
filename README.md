@@ -25,9 +25,17 @@ replace `YOUR_GIPHY_TOKEN` with your [giphy token](https://developers.giphy.com/
 ```sh
 npm start # or yarn start
 ```
+
+- Basic test
+
+```
+npm test # or yarn test
+```
 - And enjoy
 
 ## Main packages
   - [ReactJS](https://reactjs.org/)
   - [Redux](https://redux.js.org/)
   - [Redux-Saga](https://redux-saga.js.org/)
+  - [JestJS](https://jestjs.io/)
+  - [Enzyme](https://airbnb.io/enzyme/)
