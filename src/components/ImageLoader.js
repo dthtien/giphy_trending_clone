@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-underscore-dangle
 const _loaded = {};
 
 class ImageLoader extends Component {
@@ -19,7 +23,8 @@ class ImageLoader extends Component {
   };
 
   render() {
-    let { className, loadedClassName, loadingClassName, alt } = this.props;
+    const { loadedClassName, loadingClassName, alt } = this.props;
+    let { className } = this.props;
 
     className = `${className} ${
       this.state.loaded ? loadedClassName : loadingClassName
@@ -37,6 +42,13 @@ class ImageLoader extends Component {
     );
   }
 }
+
+ImageLoader.propTypes = {
+  className: PropTypes.string,
+  loadedClassName: PropTypes.string,
+  loadingClassName: PropTypes.string,
+  alt: PropTypes.string.isRequired,
+};
 
 ImageLoader.defaultProps = {
   className: '',

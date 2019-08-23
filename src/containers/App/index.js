@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -12,7 +14,7 @@ import ImageItem from './components/ImageItem';
 import PreviewImageModal from './components/PreviewImageModal';
 const { Text } = Typography;
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
@@ -40,6 +42,10 @@ class App extends Component {
     });
   };
 
+  handleClickOnLogo = () => {
+    this.props.loadImages();
+  };
+
   render() {
     const {
       images: { data, error },
@@ -54,7 +60,12 @@ class App extends Component {
       return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <img
+              src={logo}
+              className="App-logo"
+              alt="logo"
+              onClick={this.handleClickOnLogo}
+            />
           </header>
           {visible && (
             <PreviewImageModal

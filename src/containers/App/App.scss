@@ -11,7 +11,7 @@
     background: #ffffff33;
   }
   .ant-modal-body{
-    padding: 0 24px;
+    padding: 0 5px;
   }
   img {
     width: 100%;
@@ -23,7 +23,7 @@
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 10vmin;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .App-link {

@@ -38,7 +38,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
     "eslint": "^6.2.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -50,6 +54,10 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "eslint-plugin-redux-saga": "^1.1.0",
-    "prettier": "^1.18.2"
+    "jest": "24.8.0",
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.9.0",
+    "redux-mock-store": "^1.5.3",
+    "enzyme-adapter-react-16": "^1.14.0"
   }
 }

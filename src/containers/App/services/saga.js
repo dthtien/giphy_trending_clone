@@ -3,20 +3,18 @@ import { LOAD_IMAGES } from './constants';
 import { getTrending } from './api';
 import { loadImagesSuccess, loadImagesError } from './actions';
 
-function* loadImagesSaga(action){
+export function* loadImagesSaga(action) {
   const params = action.params || {};
   try {
-    const response = yield call(getTrending, {...params, limit: 20 });
+    const response = yield call(getTrending, { ...params, limit: 20 });
     yield put(loadImagesSuccess(response.data));
   } catch (error) {
-    console.log(error)
     yield put(loadImagesError(error));
   }
-
 }
 
-function* appSaga(){
+function* appSaga() {
   yield takeLatest(LOAD_IMAGES, loadImagesSaga);
-};
+}
 
 export default appSaga;

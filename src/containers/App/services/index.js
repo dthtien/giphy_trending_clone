@@ -1,6 +1,8 @@
 import reducer from './reducer';
 
-export { loadImages } from './actions';
-export { default as saga } from './saga';
+export { initialState } from './reducer';
+export { loadImages, loadImagesSuccess, loadImagesError } from './actions';
+export { default as saga, loadImagesSaga } from './saga';
 export { makeSelectImages } from './selectors';
+export { LOAD_IMAGES } from './constants';
 export default reducer;
