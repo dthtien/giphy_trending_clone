@@ -1,8 +1,18 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
 import { LOAD_IMAGES } from './constants';
+import { getTrending } from './api';
+import { loadImagesSuccess, loadImagesError } from './actions';
 
 function* loadImagesSaga(action){
-  console.log('hello');
+  const params = action.params || {};
+  try {
+    const response = yield call(getTrending, {...params, limit: 20 });
+    yield put(loadImagesSuccess(response.data));
+  } catch (error) {
+    console.log(error)
+    yield put(loadImagesError(error));
+  }
+
 }
 
 function* appSaga(){

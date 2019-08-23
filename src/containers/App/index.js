@@ -1,42 +1,89 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Row, Typography } from 'antd';
+import { createStructuredSelector } from 'reselect';
+import { loadImages, makeSelectImages } from './services';
+import './App.scss';
 import logo from '../../logo.svg';
-import { loadImages } from './services';
-import './App.css';
+import { Loader } from '../../components';
+import ImageItem from './components/ImageItem';
+import PreviewImageModal from './components/PreviewImageModal';
+const { Text } = Typography;
 
 class App extends Component {
-  componentDidMount() {
-    this.props.loadImages()
+  constructor(props) {
+    super(props);
+
+    this.state = { visible: true };
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  componentDidMount() {
+    this.props.loadImages();
   }
+
+  handleClosePreviewModal = () => {
+    this.setState({ visible: false });
+  };
+
+  handleOpenPreviewModal = () => {
+    this.setState({ visible: true });
+  };
+
+  render() {
+    const {
+      images: { data, error },
+    } = this.props;
+    const { visible } = this.state;
+
+    if (error) {
+      return <Text type="danger">Error!</Text>;
+    }
+
+    if (data) {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+          </header>
+          {visible && (
+            <PreviewImageModal
+              visible={visible}
+              onClose={this.handleClosePreviewModal}
+            />
+          )}
+          <Row>
+            {data.map(image => (
+              <ImageItem
+                key={image.id}
+                image={image}
+                onClick={this.handleOpenPreviewModal}
+              />
+            ))}
+          </Row>
+        </div>
+      );
+    }
+
+    return <Loader />;
+  }
+}
+
+App.propTypes = {
+  loadImages: PropTypes.func.isRequired,
+  images: PropTypes.object.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   loadImages: bindActionCreators(loadImages, dispatch),
 });
 
+const mapStateToProps = createStructuredSelector({
+  images: makeSelectImages(),
+});
+
 export default connect(
-  null,
-  mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(App);

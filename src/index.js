@@ -1,11 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './index.css';
+import axios from 'axios';
+import 'antd/dist/antd.css';
+import './index.scss';
 import App from './containers';
 import { Provider } from 'react-redux';
 import store from './store';
 import * as serviceWorker from './serviceWorker';
-
+axios.defaults.baseURL = "https://api.giphy.com/v1/gifs/";
 
 const target = document.getElementById('root');
 render(

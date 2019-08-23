@@ -18,11 +18,11 @@ const appReducer = (state = initialState, action) =>
       case LOAD_IMAGES:
         draft.loading = true;
         draft.error = false;
-        draft.data = false;
+        draft.data = null;
         break;
 
       case LOAD_IMAGES_SUCCESS:
-        draft.userData.repositories = action.repos;
+        draft.data = action.payload;
         draft.loading = false;
         draft.currentUser = action.username;
         break;

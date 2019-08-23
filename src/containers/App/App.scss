@@ -1,0 +1,94 @@
+.App {
+  text-align: center;
+  background-color: #f1f1f1;
+  margin-bottom: 30px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 10vmin;
+  pointer-events: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.imageContent{
+  height: 250px;
+  margin: 10px 0;
+  .responsive {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    border: 10px solid white;
+    cursor: pointer;
+  }
+
+  .img-loading {
+    cursor: wait;
+    opacity: 0;
+  }
+
+  .img-loaded {
+    cursor: pointer;
+    animation: fadeInImg cubic-bezier(0.23, 1, 0.32, 1) 1;
+    opacity: 0;
+    position: relative;
+    animation-fill-mode: forwards;
+    animation-duration: 0.7s;
+    animation-delay: 0.1s;
+  }
+
+  .userInfor{
+    margin-left: 25px;
+    margin-top: 15px;
+    display: block;
+    text-align: left;
+    span{
+      white-space: nowrap;
+      overflow: hidden;
+      font-weight: bold;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+  }
+
+}
+@media only screen and (max-width: 400px) {
+  .imageContent{
+    height: 150px;
+    .responsive {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      height: 100px;
+    }
+
+    .userInfor{
+      span{
+        font-size: 8px;
+      }
+      avatarImage {
+        width: 30px;
+      }
+    }
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeInImg {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
