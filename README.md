@@ -1,4 +1,4 @@
-# Giphy trending clone app
+# [Giphy trending clone app](https://giphy-trending-clone.herokuapp.com/)
 
 ## Guide
 - Clone source code
@@ -20,10 +20,12 @@ npm install # or yarn
 REACT_APP_GIPHY_TOKEN=YOUR_GIPHY_TOKEN
 ```
 replace `YOUR_GIPHY_TOKEN` with your [giphy token](https://developers.giphy.com/docs/sdk) or check with in the message
-# copy .env file to giphy_trending_clone folder
+- Run the applicacation
+
+```sh
 npm start # or yarn start
-# enjoy
 ```
+- And enjoy
 
 ## Main packages
   - [ReactJS](https://reactjs.org/)
