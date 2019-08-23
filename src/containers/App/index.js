@@ -16,7 +16,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { visible: true };
+    this.state = {
+      visible: false,
+      showingImageUrl: null,
+    };
   }
 
   componentDidMount() {
@@ -24,18 +27,24 @@ class App extends Component {
   }
 
   handleClosePreviewModal = () => {
-    this.setState({ visible: false });
+    this.setState({
+      visible: false,
+      showingImageUrl: null,
+    });
   };
 
-  handleOpenPreviewModal = () => {
-    this.setState({ visible: true });
+  handleOpenPreviewModal = url => {
+    this.setState({
+      visible: true,
+      showingImageUrl: url,
+    });
   };
 
   render() {
     const {
       images: { data, error },
     } = this.props;
-    const { visible } = this.state;
+    const { visible, showingImageUrl } = this.state;
 
     if (error) {
       return <Text type="danger">Error!</Text>;
@@ -51,6 +60,7 @@ class App extends Component {
             <PreviewImageModal
               visible={visible}
               onClose={this.handleClosePreviewModal}
+              src={showingImageUrl}
             />
           )}
           <Row>

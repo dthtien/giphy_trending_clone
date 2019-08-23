@@ -16,7 +16,7 @@ const ImageItem = ({ image, onClick }) => (
       className="responsive"
       src={image.images.fixed_height_small_still.url}
       alt={image.title}
-      onClick={onClick}
+      onClick={() => onClick(image.images.original.url)}
     />
     {image.user && <UserInfo user={image.user} />}
   </Col>
@@ -24,7 +24,7 @@ const ImageItem = ({ image, onClick }) => (
 
 ImageItem.propTypes = {
   image: PropTypes.object.isRequired,
-  onClick: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default memo(ImageItem);

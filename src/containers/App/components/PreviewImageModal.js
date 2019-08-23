@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
+import { ImageLoader } from '../../../components';
 
-const PreviewImageModal = ({ visible, onClose }) => (
+const PreviewImageModal = ({ visible, onClose, src }) => (
   <div>
     <Modal
-      title="Basic Modal"
+      // title="Preview image"
       visible={visible}
       onOk={onClose}
       onCancel={onClose}
+      className="previewImageModal"
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <ImageLoader src={src} alt="original image" />
     </Modal>
   </div>
 );
@@ -20,6 +20,7 @@ const PreviewImageModal = ({ visible, onClose }) => (
 PreviewImageModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default PreviewImageModal;
