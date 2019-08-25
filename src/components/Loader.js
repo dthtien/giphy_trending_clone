@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { Icon } from 'antd';
 
-const Loader = () => (
+const Loader = ({ spin, onClick }) => (
   <div className="spinner">
-    <Icon type="sync" spin />
+    {spin ? (
+      <Icon type="sync" spin={spin} />
+    ) : (
+      <Icon type="sync" onClick={onClick} />
+    )}
   </div>
 );
 
-export default Loader;
+Loader.propTypes = {
+  spin: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default memo(Loader);

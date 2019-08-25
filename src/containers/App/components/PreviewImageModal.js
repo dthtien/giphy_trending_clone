@@ -6,7 +6,6 @@ import { ImageLoader } from '../../../components';
 const PreviewImageModal = ({ visible, onClose, src }) => (
   <div>
     <Modal
-      // title="Preview image"
       visible={visible}
       onOk={onClose}
       onCancel={onClose}

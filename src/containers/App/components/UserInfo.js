@@ -16,7 +16,15 @@ const UserInfo = ({ user: { profile_url, avatar_url, display_name } }) => (
 );
 
 UserInfo.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
+};
+
+UserInfo.defaultProps = {
+  user: {
+    profile_url: 'https://giphy.com',
+    display_name: 'Giphy',
+    avatar_url: 'https://media.giphy.com/avatars/default5.gif',
+  },
 };
 
 export default memo(UserInfo);

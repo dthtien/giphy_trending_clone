@@ -14,12 +14,11 @@ cd giphy_trending_clone
 npm install # or yarn
 ```
 
-- create `.env` file
+- create `.env` file. Replace `YOUR_GIPHY_TOKEN` with your [giphy token](https://developers.giphy.com/docs/sdk) or check with in the message
 ```
 #.env
 REACT_APP_GIPHY_TOKEN=YOUR_GIPHY_TOKEN
 ```
-replace `YOUR_GIPHY_TOKEN` with your [giphy token](https://developers.giphy.com/docs/sdk) or check with in the message
 - Run the applicacation
 
 ```sh
@@ -64,7 +63,6 @@ npm test # or yarn test
 │   ├── index.js
 │   └── index.scss # General style.
 ├── .eslintrc.js
-├── test
 ├── .prettierrc
 ├── README.md
 ├── package.json

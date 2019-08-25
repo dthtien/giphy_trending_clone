@@ -1,12 +1,13 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { LOAD_IMAGES } from './constants';
 import { getTrending } from './api';
 import { loadImagesSuccess, loadImagesError } from './actions';
+import { makeSelectOffset } from './selectors';
 
-export function* loadImagesSaga(action) {
-  const params = action.params || {};
+export function* loadImagesSaga() {
   try {
-    const response = yield call(getTrending, { ...params, limit: 20 });
+    const offset = yield select(makeSelectOffset());
+    const response = yield call(getTrending, { offset });
     yield put(loadImagesSuccess(response.data));
   } catch (error) {
     yield put(loadImagesError(error));

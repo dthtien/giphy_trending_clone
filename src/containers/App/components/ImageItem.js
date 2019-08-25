@@ -18,7 +18,7 @@ const ImageItem = ({ image, onClick }) => (
       alt={image.title}
       onClick={() => onClick(image.images.original.url)}
     />
-    {image.user && <UserInfo user={image.user} />}
+    <UserInfo user={image.user} />
   </Col>
 );
 

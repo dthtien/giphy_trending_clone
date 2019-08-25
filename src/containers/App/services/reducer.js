@@ -9,6 +9,7 @@ export const initialState = {
   loading: false,
   error: false,
   data: null,
+  offset: 0,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -24,6 +25,7 @@ const appReducer = (state = initialState, action) =>
       case LOAD_IMAGES_SUCCESS:
         draft.data = action.payload;
         draft.loading = false;
+        draft.offset = state.offset + 20;
         break;
 
       case LOAD_IMAGES_ERROR:

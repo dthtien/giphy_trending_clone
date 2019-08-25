@@ -6,7 +6,13 @@ const selectApp = state => state.app || initialState;
 const makeSelectImages = () =>
   createSelector(
     selectApp,
-    selectApp => selectApp,
+    selectAppState => selectAppState,
   );
 
-export { makeSelectImages };
+const makeSelectOffset = () =>
+  createSelector(
+    selectApp,
+    selectAppState => selectAppState.offset,
+  );
+
+export { makeSelectImages, makeSelectOffset };

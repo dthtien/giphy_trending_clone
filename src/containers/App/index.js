@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Row, Typography } from 'antd';
+import { Row } from 'antd';
 import { createStructuredSelector } from 'reselect';
 import { loadImages, makeSelectImages } from './services';
 import './App.scss';
@@ -12,7 +12,7 @@ import logo from '../../logo.svg';
 import { Loader } from '../../components';
 import ImageItem from './components/ImageItem';
 import PreviewImageModal from './components/PreviewImageModal';
-const { Text } = Typography;
+import { getUnique } from '../../utils';
 
 export class App extends Component {
   constructor(props) {
@@ -21,7 +21,25 @@ export class App extends Component {
     this.state = {
       visible: false,
       showingImageUrl: null,
+      images: [],
     };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const {
+      images: { data },
+    } = nextProps;
+    const { images } = prevState;
+    let updatingState = {};
+
+    if (data && images !== data) {
+      updatingState = {
+        ...updatingState,
+        images: getUnique(images.concat(data), 'id'),
+      };
+    }
+
+    return Object.assign(prevState, updatingState);
   }
 
   componentDidMount() {
@@ -48,46 +66,36 @@ export class App extends Component {
 
   render() {
     const {
-      images: { data, error },
+      images: { loading },
     } = this.props;
+    const { images } = this.state;
     const { visible, showingImageUrl } = this.state;
-
-    if (error) {
-      return <Text type="danger">Error!</Text>;
-    }
-
-    if (data) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img
-              src={logo}
-              className="App-logo"
-              alt="logo"
-              onClick={this.handleClickOnLogo}
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        {visible && (
+          <PreviewImageModal
+            visible={visible}
+            onClose={this.handleClosePreviewModal}
+            src={showingImageUrl}
+          />
+        )}
+        <Row>
+          {images.map(image => (
+            <ImageItem
+              key={image.id}
+              image={image}
+              onClick={this.handleOpenPreviewModal}
             />
-          </header>
-          {visible && (
-            <PreviewImageModal
-              visible={visible}
-              onClose={this.handleClosePreviewModal}
-              src={showingImageUrl}
-            />
-          )}
-          <Row>
-            {data.map(image => (
-              <ImageItem
-                key={image.id}
-                image={image}
-                onClick={this.handleOpenPreviewModal}
-              />
-            ))}
-          </Row>
+          ))}
+        </Row>
+        <div className="App-header">
+          <Loader spin={loading} onClick={this.handleClickOnLogo} />
         </div>
-      );
-    }
-
-    return <Loader />;
+      </div>
+    );
   }
 }
 
