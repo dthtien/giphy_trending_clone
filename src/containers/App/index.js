@@ -60,7 +60,7 @@ export class App extends Component {
     });
   };
 
-  handleClickOnLogo = () => {
+  handleLoadMore = () => {
     this.props.loadImages();
   };
 
@@ -92,7 +92,7 @@ export class App extends Component {
           ))}
         </Row>
         <div className="App-header">
-          <Loader spin={loading} onClick={this.handleClickOnLogo} />
+          <Loader spin={loading} onClick={this.handleLoadMore} />
         </div>
       </div>
     );
