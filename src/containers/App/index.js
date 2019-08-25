@@ -44,7 +44,32 @@ export class App extends Component {
 
   componentDidMount() {
     this.props.loadImages();
+    window.addEventListener('scroll', this.handleScroll);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const windowHeight =
+      'innerHeight' in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const { body } = document;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight,
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      this.handleLoadMore();
+    }
+  };
 
   handleClosePreviewModal = () => {
     this.setState({
@@ -91,9 +116,7 @@ export class App extends Component {
             />
           ))}
         </Row>
-        <div className="App-header">
-          <Loader spin={loading} onClick={this.handleLoadMore} />
-        </div>
+        <div className="App-header">{loading && <Loader />}</div>
       </div>
     );
   }
