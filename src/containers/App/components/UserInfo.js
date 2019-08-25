@@ -11,7 +11,7 @@ const UserInfo = ({ user: { profile_url, avatar_url, display_name } }) => (
     rel="noopener noreferrer"
   >
     <Avatar src={avatar_url} className="avatarImage" />
-    <span>{display_name}</span>
+    <span>{display_name.substring(0, 40)}</span>
   </a>
 );
 

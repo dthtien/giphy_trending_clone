@@ -61,12 +61,13 @@
     margin-top: 15px;
     display: block;
     text-align: left;
+    padding-right: 15px;
     span{
-      white-space: nowrap;
       overflow: hidden;
       font-weight: bold;
       font-size: 15px;
       margin-left: 10px;
+      word-break: break-all;
     }
   }
 
